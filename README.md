@@ -62,7 +62,7 @@ pull refresh tool based on iscroll5
             pullDownAction()
         },
 
-        scrollBottom: '#scroll-bottom',                                     //指定上拉时显示的元素，该属性存在且有效时，pull-down操作才会生效
+        scrollBottom: '#scroll-bottom',                                     //指定上拉时显示的元素，该属性存在且有效时，pull-up操作才会生效
         scrollBottomHeight: 50,                                             //上拉元素的高度，需要手工指定,所以对应元素的高度样式也要固定
         scrollBottomFlip: function(){scrollBottom.innerText='松开加载'},    //上拉到临界点时的操作，一般是改变内容提示用户松手
         scrollBottomRegular: function(){scrollBottom.innerText='上拉加载'}, //从临界点变回常态时的操作，一般是改变提示内容
