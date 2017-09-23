@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>IRefresh</title>
+<link rel="stylesheet" type="text/css" href="./demo.css"/>
+<script type="text/javascript" src="../iscroll-probe.js"></script>
+<script type="text/javascript" src="../irefresh.js"></script>
+
+<script type="text/javascript">
+var myScroll;
+var generatedCount=0;
+
+function pullDownAction(){
+		setTimeout(function () {
+			var el, li, i;
+			el = document.querySelector('#scroller ul');
+	
+			for (i=0; i<3; i++) {
+				li = document.createElement('li');
+				li.innerHTML = '(Pull down) Generated row ' + (++generatedCount);
+				el.insertBefore(li, el.childNodes[0]);
+			}
+		    myScroll.refresh();		// Remember to refresh when contents are loaded (ie: on ajax completion)
+		}, 1000);	// Simulate network congestion, remove setTimeout from production!
+}
+
+function pullUpAction () {
+	setTimeout(function () {
+		var el, li, i;
+		el = document.querySelector('#scroller ul');
+
+		for (i=0; i<3; i++) {
+			li = document.createElement('li');
+			li.innerHTML = '(Pull up) Generated row ' + (++generatedCount);
+			el.appendChild(li);
+		}
+		myScroll.refresh();		// Remember to refresh when contents are loaded (ie: on ajax completion)
+	}, 1000);	// Simulate network congestion, remove setTimeout from production!
+}
+
+function loaded() {
+    var scrollTop=document.getElementById('scroll-top');
+    var scrollBottom=document.getElementById('scroll-bottom');
+    myScroll = IRefresh('#iscroll', {
+        //if scrollTop exist, then pull-down enabled
+        scrollTop: '#scroll-top',
+        scrollTopHeight: 50,
+        scrollTopFlip: function(){scrollTop.innerText='松开刷新'},
+        scrollTopRegular: function(){scrollTop.innerText='下拉刷新'},
+        scrollTopLoad: function(){ scrollTop.innerText='正在加载...'; pullDownAction()},
+
+        //if scrollBottom exist, then pull-up enabled
+        scrollBottom: '#scroll-bottom',
+        scrollBottomHeight: 50,
+        scrollBottomFlip: function(){scrollBottom.innerText='松开加载'},
+        scrollBottomRegular: function(){scrollBottom.innerText='上拉加载'},
+        scrollBottomLoad: function(){scrollBottom.innerText='正在加载...'; pullUpAction()}
+    });
+}
+
+
+</script>
+</head>
+
+<body onload="loaded()">
+<div id="header">IRefresh</div>
+<div id="iscroll">
+    <div id="scroller">
+        <div id="scroll-top" style="height: 50px">下拉刷新</div>
+        <ul>
+            <li>Pretty row 1</li>
+            <li>Pretty row 2</li>
+            <li>Pretty row 3</li>
+            <li>Pretty row 4</li>
+            <li>Pretty row 5</li>
+            <li>Pretty row 6</li>
+            <li>Pretty row 7</li>
+            <li>Pretty row 8</li>
+            <li>Pretty row 9</li>
+            <li>Pretty row 10</li>
+            <li>Pretty row 11</li>
+            <li>Pretty row 12</li>
+            <li>Pretty row 13</li>
+            <li>Pretty row 14</li>
+            <li>Pretty row 15</li>
+            <li>Pretty row 16</li>
+            <li>Pretty row 17</li>
+            <li>Pretty row 18</li>
+            <li>Pretty row 19</li>
+            <li>Pretty row 20</li>
+            <li>Pretty row 21</li>
+            <li>Pretty row 22</li>
+            <li>Pretty row 23</li>
+            <li>Pretty row 24</li>
+            <li>Pretty row 25</li>
+            <li>Pretty row 26</li>
+            <li>Pretty row 27</li>
+            <li>Pretty row 28</li>
+            <li>Pretty row 29</li>
+            <li>Pretty row 30</li>
+            <li>Pretty row 31</li>
+            <li>Pretty row 32</li>
+            <li>Pretty row 33</li>
+            <li>Pretty row 34</li>
+            <li>Pretty row 35</li>
+            <li>Pretty row 36</li>
+            <li>Pretty row 37</li>
+            <li>Pretty row 38</li>
+            <li>Pretty row 39</li>
+            <li>Pretty row 40</li>
+        </ul>
+        <div id="scroll-bottom" style="height: 50px">上拉加载</div>
+    </div>
+</div>
+<div id="footer"></div>
+</body>
+</html>
